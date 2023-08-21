@@ -27,8 +27,11 @@
             </div>
             <div class="col-9" id="contenido">
                 <p class="title"><b>Checkout</b>Express </p>
-                <p class="subtitle">Gestión de pedidos</p>
-                <div class="row align-items-center" id="search_bar">
+                <p class="subtitle">Inventario | Gestión de Productos</p>
+                <div class="row justify-content-center align-items-center" id="search_bar">
+                  <div class="col-md-2">
+                    <button class="btn btn-primary px-4"><i class="fa-solid fa-plus"></i> Nuevo</button>
+                  </div>
                     <div class="col-md-7 d-flex ">
                         <input type="text" class="form-control form-control-lg" placeholder="Buscar...">
                         <button class="search btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -37,54 +40,49 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">Pedido</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Fecha creación</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Cantidad</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Pago</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <th scope="row">0001</th>
-                        <td>gonzalezcjulian@gmail.com</td>
-                        <td>11/10/2023</td>
-                        <td><i class="fa-solid fa-circle text-success"></i></td>
-                        <td><i class="fa-solid fa-circle-check text-danger"></i></td>
+                        <td>Aceite</td>
+                        <td>4</td>
+                        <td>Bajo Stock <i class="fa-solid fa-triangle-exclamation text-danger"></i></td>
                         <td>
                             <button class="btn btn-success"><i class="fa-solid fa-pen"></i>Editar</button>
                             <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Borrar</button>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row">0001</th>
-                        <td>gonzalezcjulian@gmail.com</td>
-                        <td>11/10/2023</td>
-                        <td><i class="fa-solid fa-circle text-success"></i></td>
-                        <td><i class="fa-solid fa-circle-check text-danger"></i></td>
+                        <th scope="row">0002</th>
+                        <td>Pastas</td>
+                        <td>102</td>
+                        <td>Activo</td>
                         <td>
                             <button class="btn btn-success"><i class="fa-solid fa-pen"></i>Editar</button>
                             <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Borrar</button>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row">0001</th>
-                        <td>gonzalezcjulian@gmail.com</td>
-                        <td>11/10/2023</td>
-                        <td><i class="fa-solid fa-circle text-success"></i></td>
-                        <td><i class="fa-solid fa-circle-check text-danger"></i></td>
+                        <th scope="row">0003</th>
+                        <td>Decoración</td>
+                        <td>86</td>
+                        <td>Activo</td>
                         <td>
                             <button class="btn btn-success"><i class="fa-solid fa-pen"></i>Editar</button>
                             <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Borrar</button>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row">0001</th>
-                        <td>gonzalezcjulian@gmail.com</td>
-                        <td>11/10/2023</td>
-                        <td><i class="fa-solid fa-circle text-success"></i></td>
-                        <td><i class="fa-solid fa-circle-check text-danger"></i></td>
+                        <th scope="row">0004</th>
+                        <td>Accesorios</td>
+                        <td>233</td>
+                        <td>Bloqueado</td>
                         <td>
                             <button class="btn btn-success"><i class="fa-solid fa-pen"></i>Editar</button>
                             <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Borrar</button>

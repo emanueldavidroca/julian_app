@@ -1,3 +1,16 @@
 #admin{
     min-height: 100vh;
+    #contenido{
+        .title{
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            margin-top: 3rem;
+        }
+        .subtitle{
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    }
+    
 }

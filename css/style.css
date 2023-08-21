@@ -72,12 +72,6 @@
   padding-right: 1rem;
   min-height: 100vh;
 }
-.admin_usuarios #contenido .title {
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 3rem;
-  margin-top: 3rem;
-}
 .admin_usuarios #contenido #search_bar .search {
   background-color: rgb(221, 221, 221);
   color: #000;
@@ -100,12 +94,6 @@
 
 .admin_pedidos #contenido {
   min-height: 100vh;
-}
-.admin_pedidos #contenido .title {
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 3rem;
-  margin-top: 3rem;
 }
 
 #admin #sidebar {
@@ -130,6 +118,20 @@
   color: white;
   font-size: 18px;
   margin-bottom: 0.75rem;
+}
+
+#admin {
+  min-height: 100vh;
+}
+#admin #contenido .title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+#admin #contenido .subtitle {
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 /*# sourceMappingURL=style.css.map */

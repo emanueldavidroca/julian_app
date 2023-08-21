@@ -1,3 +1,10 @@
+.texto-naranja{
+    color:#FFAE5D;
+}
+.btn-naranja{
+    background-color:#FFAE5D;
+    color: #fff;
+}
 #admin{
     min-height: 100vh;
     #contenido{
@@ -12,5 +19,65 @@
             font-size: 1.2rem;
         }
     }
-    
+}
+#client{
+    padding-left:3rem;
+    padding-right:3rem;
+    #navbar_client{
+        
+        .upper-bar{
+            .title{
+                font-size: 2rem;
+                text-align: left;
+                text-decoration: none;
+                color: #000;
+            }
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px grey solid;
+        }
+        .middle-bar{
+            margin-top: 1rem;
+            .location{
+                background-color: #FFAE5D;
+                width:75%;
+            }
+            .scan{
+                width: 85%;
+                background-color: #FF3232CC;
+            }
+            .search{
+                position: absolute;
+                right:1.5rem;
+                top: 0.65rem;
+            }
+        }
+        .lower-bar{
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            .link{
+                text-decoration: none;
+                color:rgb(81, 81, 81);
+            }
+            .link:hover{
+                color:#FFAE5D;
+            }
+            .link.disabled{
+                pointer-events: none;
+            }
+
+        }
+    }
+    .card-producto{
+        font-size: 1rem;
+        font-size: bold;
+    }
+    .title-productos{
+        font-size: 2rem;
+        font-weight: 500;
+        border-bottom:2px #FFAE5D dashed;
+    }
 }

@@ -1,0 +1,99 @@
+.client_cart{
+    #cart{
+        .floating-label{
+            position: absolute;
+            top: -12px;
+            left: 1.5rem;
+            background-color: #fff;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        section{
+            padding: 1.5rem;
+            border: 2px  grey solid;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            #direccionFacturacion{
+
+            }
+        }
+        #metodoPago{
+            margin-top: 2rem;
+            .mercadopago{
+                margin-bottom: 1.5rem;
+                border: 2px grey solid;
+                padding: 1rem;
+                position: relative;
+                border-radius: 10px;
+                .paypal{
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    width: 2rem;
+                    height: 2rem;
+                }
+            }
+            .tarjetas{
+                border: 2px rgb(0, 128, 255) solid;
+                padding: 1rem;
+                position: relative;
+                border-radius: 10px;
+
+                .cards{
+                    width: 13rem;
+                    height: 1.65rem;
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                }
+            }
+            .seguridad{
+                margin-top:1rem;
+                .icon{
+                    height: 2rem;
+                    width: 2rem;
+                }
+                
+            }
+        }
+        #sidebar-cart{
+            .accordion-button{
+                p{
+                    font-weight: bold;
+                    font-size: 1.15rem;
+
+                }
+                span{
+                    font-weight: normal;
+                    font-size: 0.85rem;
+
+                }
+            }
+            #resumenCompra{
+            
+                #resumenCompra-accordion{
+                    .btn-minus-quantity{
+                        border: 1px rgb(209, 209, 209) solid;
+                    }
+                    .quantity{
+                        width: 2.5rem;
+                        height: 2.5rem;
+                        padding: 0.15rem 0.15rem 0.15rem 0.75rem ;
+    
+                    }
+                    .btn-plus-quantity{
+                        border: 1px rgb(209, 209, 209) solid;
+                        
+                    }
+                }
+            }
+        }
+        
+    }
+    .mas-vendidos{
+        .mensaje{
+            font-size: 4.2rem;
+            margin-top: 5rem;
+        }
+    }
+}

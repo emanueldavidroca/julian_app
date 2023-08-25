@@ -23,6 +23,9 @@
 #client{
     padding-left:3rem;
     padding-right:3rem;
+    main{
+        margin-top: 2rem;
+    }
     #navbar_client{
         
         .upper-bar{
@@ -80,4 +83,7 @@
         font-weight: 500;
         border-bottom:2px #FFAE5D dashed;
     }
+}
+.accordion-button{
+    background-color: transparent !important;    
 }

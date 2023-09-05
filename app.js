@@ -32,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 /* ENRUTADO */
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
+let adminRouter = require('./routes/admin');
 
 
 let listen = app.listen(port,()=>{
@@ -58,6 +59,7 @@ app.use(function(err, req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
 
 module.exports = app;
 

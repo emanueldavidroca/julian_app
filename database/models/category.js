@@ -4,21 +4,19 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   //Relacion entre tablas
-  class users extends Model {
+  class category extends Model {
     static associate(models) {
     }
   }
   //Columnas
-  users.init({
-    usuario: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
+  category.init({
+    categoryName: DataTypes.STRING,
   }, {
     //Configuraciones generales de la tabla
     sequelize,
-    modelName: 'users',
-    paranoid:false,
-    timestamps:false
+    modelName: 'category',
+    paranoid:true,
+    timestamps:true
   });
-  return users;
+  return category;
 };

@@ -3,7 +3,9 @@ const {users} = require("../database/models");
 
 let usersController = {
     login:(req,res)=>{
-        res.render("./admin_login");
+        let saludo = "hola";
+        let despedida = "chau";
+        res.render("./admin_login",{saludo,despedida});
     },
     logear:async (req,res)=>{
         try{
@@ -27,10 +29,18 @@ let usersController = {
         catch(e){
             console.log(e);
         }
-
     },
-    admin_menu:(req,res)=>{
-        res.render("./admin_menu");
+    home:(req,res)=>{
+        res.render("./client_home");
+    },
+    electros:(req,res)=>{
+        res.render("./client_electros");
+    },
+    cart:(req,res)=>{
+        res.render("./client_cart");
+    },
+    wishlist:(req,res)=>{
+        res.render("./client_wishlist");
     },
 }
 module.exports = usersController;

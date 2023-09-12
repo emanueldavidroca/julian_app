@@ -4,12 +4,12 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   //Relacion entre tablas
-  class orders extends Model {
+  class products extends Model {
     static associate(models) {
     }
   }
   //Columnas
-  orders.init({
+  products.init({
     productName: DataTypes.STRING,
     description: DataTypes.STRING,
     barCode: DataTypes.STRING,
@@ -20,9 +20,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     //Configuraciones generales de la tabla
     sequelize,
-    modelName: 'orders',
+    modelName: 'products',
     paranoid:true,
     timestamps:true
   });
-  return orders;
+  return products;
 };

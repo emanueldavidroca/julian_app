@@ -4,19 +4,19 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   //Relacion entre tablas
-  class category extends Model {
+  class categories extends Model {
     static associate(models) {
     }
   }
   //Columnas
-  category.init({
+  categories.init({
     categoryName: DataTypes.STRING,
   }, {
     //Configuraciones generales de la tabla
     sequelize,
-    modelName: 'category',
+    modelName: 'categories',
     paranoid:true,
     timestamps:true
   });
-  return category;
+  return categories;
 };

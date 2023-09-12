@@ -1,16 +1,18 @@
 let express = require('express');
 let router = express.Router();
 let adminController = require("../controller/admin");
+let userRolValidation = require("../middlewares/userRolValidation");
 
-/* GET users listing. */
-router.get("/login",adminController.menu);
-router.get("/menu",adminController.menu);
-router.get("/usuarios",adminController.usuarios);
-router.post("/usuarios",adminController.crearUsuarios);
-router.get("/editar",adminController.editar);
-router.get("/pedidos",adminController.pedidos);
-router.get("/productos",adminController.productos);
-router.post("/productos",adminController.crearProductos);
+router.get("/login",adminController.admin_login);
+router.post("/login",adminController.admin_logear);
+router.get("/logout",adminController.admin_logout);
+router.get("/menu",userRolValidation("administrador"),adminController.admin_menu);
+router.get("/usuarios",userRolValidation("administrador"),adminController.admin_usuarios);
+router.post("/usuarios",userRolValidation("administrador"),adminController.admin_crearUsuarios);
+router.get("/editar",userRolValidation("administrador"),adminController.admin_editar);
+router.get("/pedidos",userRolValidation("administrador"),adminController.admin_pedidos);
+router.get("/productos",userRolValidation("administrador"),adminController.admin_productos);
+router.post("/productos",userRolValidation("administrador"),adminController.admin_crearProductos);
 
 
 module.exports = router;

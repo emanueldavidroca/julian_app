@@ -4,7 +4,7 @@ const {users} = require("../database/models");
 let indexController = {
     index:async (req, res) => {
         try {
-            res.render("./index");
+            res.render("./admin_login");
         } catch (error) {
             console.log(error);
         }

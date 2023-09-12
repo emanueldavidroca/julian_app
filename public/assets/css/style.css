@@ -302,6 +302,11 @@
   margin-top: 5rem;
 }
 
+.client_coleccion #productos {
+  margin: auto;
+  width: 75%;
+}
+
 .texto-naranja {
   color: #FFAE5D;
 }

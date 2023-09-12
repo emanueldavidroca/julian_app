@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     usuario: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
+    rol: DataTypes.STRING,
   }, {
     //Configuraciones generales de la tabla
     sequelize,

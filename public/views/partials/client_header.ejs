@@ -1,0 +1,42 @@
+<header id="navbar_client">
+    <nav>
+        <div class="upper-bar">
+            <a href="/client/home" class="title">
+                <b>Checkout</b>Express
+            </a>
+            <div>
+                <a href="/client/cart" class="btn">
+                    <i class="fa-solid fa-cart-shopping"></i> 1
+                </a>
+                <a href="/client/wishlist" class="btn">
+                    <i class="fa-regular fa-heart"></i> 2
+                </a>
+                <button class="btn">
+                    <i class="fa-solid fa-user"></i> Julian
+                </button>
+            </div>
+        </div>
+        <div class="middle-bar row">
+            <div class="col-md-2">
+                <button class="btn location">
+                    <i class="fa-solid fa-location-dot"></i> Castelar, 1712
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button class="btn scan">
+                    Escaneá tu producto!
+                </button>
+            </div>
+            <div class="col-md-6 position-relative">
+                <input type="text" class="form-control w-75 ms-auto" placeholder="Buscar...">
+                <i class="fa-solid fa-magnifying-glass search"></i>
+            </div>
+        </div>
+        <div class="lower-bar">
+            <a href="/client/destacados" class="link disabled">Destacados</a>
+            <% categorias_lista.forEach(cat => { %>
+                <a href="/client/coleccion/<%- cat.id %>" class="link"><%- cat.categoryName %></a>
+            <% }) %>
+        </div>
+    </nav>
+</header>

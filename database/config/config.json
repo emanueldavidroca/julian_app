@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "julian_app",
-    "host": "127.0.0.1",
+    "username": "327540_julian",
+    "password": "153asd426@",
+    "database": "julian-app_db",
+    "host": "mysql-julian-app.alwaysdata.net",
     "dialect": "mysql"
   }
 }

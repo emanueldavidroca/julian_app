@@ -329,6 +329,28 @@
   font-weight: bold;
   font-size: 1.2rem;
 }
+#admin .expandible-sidebar-form {
+  position: absolute;
+  width: 0px;
+  top: 0px;
+  right: 0px;
+  overflow: hidden;
+  transition: all 0.5s;
+  background-color: white;
+  height: 100vh;
+  padding: 0;
+  border-left: 1px rgb(203, 203, 203) solid;
+}
+#admin .expandible-sidebar-form .form-group {
+  margin-bottom: 1.5rem;
+}
+#admin .expandible-sidebar-form .form-group .form-control {
+  background-color: #f8f8f8;
+}
+#admin .expandible-sidebar-form.activo {
+  width: 38%;
+  padding: 1rem 3.5rem;
+}
 
 #client {
   padding-left: 3rem;

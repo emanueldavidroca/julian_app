@@ -1,6 +1,6 @@
 const session = require("express-session");
 const { Op } = require("sequelize");
-const {users} = require("../database/models");
+const {users,products} = require("../database/models");
 const { tryEach } = require("async");
 let adminController = {
     admin_login: (req, res) => {
@@ -48,8 +48,17 @@ let adminController = {
     admin_productos: (req, res) => {
         res.render("./admin_productos");
     },
-    admin_crearProductos: (req, res) => {
-        res.render("./admin_productos");
+    admin_crearProductos: async(req, res) => {
+        try {
+            let {productName,description,barCode,price,category,stock} = req.body;
+            let result = await products.create({productName,description,barCode,price,idCategory:category,stock});
+            if(result){
+                res.redirect("/admin/productos");
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        
     },
     admin_usuarios: (req, res) => {
         res.render("./admin_usuarios");

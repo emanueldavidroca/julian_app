@@ -1,28 +1,18 @@
 <%- include("./partials/head.ejs") %> 
-<body id="client" class="client_coleccion">
+<body id="client" class="client_scan">
     <%- include("./partials/client_header.ejs") %> 
     <main class="px-5">
         <p class="title-productos mt-5">
-            <b>Productos</b> | <%- categoria_actual.categoryName %>
+            <b>Productos</b> | Escaneo de productos
         </p>
-        <div class="row justify-content-around px-5" id="productos">
-            <% productos.forEach(prod => { %>
-                <div class="col-4 card-producto">
-                    <img src="/assets/img/prod<%- prod.id %>.png" alt="">
-                    <p>
-                        <%- prod.productName %>
-                    </p>
-                    <div class="row">
-                        <div class="col-8 text-start">$<%- prod.price %></div>
-                        <div class="col-4 text-danger text-end">-40% off</div>
-                    </div>
-                    <button class="btn-naranja btn mx-auto d-block mt-3 w-100">Agregar</button>
-    
-                </div>
-            <% }) %>
+        <div class="barCode-container">
+            <img src="/assets/img/barcode-1 1.png" class="w-50 d-block mx-auto" alt="">
         </div>
+        <form action="/client/scan" method="post" id="form-scan">
+            <input type="text" class="form-control" name="barCode" placeholder="Ingresá manualmente el código de barras..">
+            <button class="btn d-block mx-auto">Agregar</button>
+        </form>
 
-        <img src="/assets/img/scanning.png" class="w-100 my-5" alt="">
 
         <!-- CLIENTES -->
         <p class="title-productos mt-5">

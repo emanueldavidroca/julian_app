@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   //Relacion entre tablas
   class users extends Model {
     static associate(models) {
+      users.hasOne(models.carts,{foreignKey:"idUser"})
+
     }
   }
   //Columnas

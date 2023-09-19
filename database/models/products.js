@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
   class products extends Model {
     static associate(models) {
       products.belongsTo(models.categories,{foreignKey:"idCategoria",as:"categoria",targetKey:"id"});
+      products.hasOne(models.carts,{foreignKey:"idProduct"})
+
     }
   }
   //Columnas

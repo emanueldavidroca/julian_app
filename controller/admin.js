@@ -16,7 +16,7 @@ let adminController = {
                 let sess = req.session;
                 sess.email = checkLogin.email;
                 sess.usuario = checkLogin.usuario;
-                sess.id = checkLogin.id;
+                sess.idUser = checkLogin.id;
                 sess.rol = checkLogin.rol;
                 req.session.save(function(err) {
                     console.log("saved");

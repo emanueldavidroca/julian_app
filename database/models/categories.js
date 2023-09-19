@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   //Relacion entre tablas
   class categories extends Model {
     static associate(models) {
+      categories.hasOne(models.products,{foreignKey:"idCategoria"})
     }
   }
   //Columnas

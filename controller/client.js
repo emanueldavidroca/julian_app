@@ -36,9 +36,9 @@ let usersController = {
     },
     client_coleccion:async(req,res)=>{
         let categorias_lista = await categories.findAll();
-        let idCategory = req.params.id;
-        let categoria_actual = await categories.findOne({where:{id:idCategory}});
-        let productos = await products.findAll({where:{idCategory}});
+        let idCategoria = req.params.id;
+        let categoria_actual = await categories.findOne({where:{id:idCategoria}});
+        let productos = await products.findAll({where:{idCategoria}});
         res.render("./client_coleccion",{productos,categoria_actual,categorias_lista});
     },
     client_cart:async(req,res)=>{

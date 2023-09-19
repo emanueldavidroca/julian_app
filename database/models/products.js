@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   //Relacion entre tablas
   class products extends Model {
     static associate(models) {
+      products.belongsTo(models.categories,{foreignKey:"idCategoria",as:"categoria",targetKey:"id"});
     }
   }
   //Columnas
@@ -13,10 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     productName: DataTypes.STRING,
     description: DataTypes.STRING,
     barCode: DataTypes.STRING,
-    idCategory: DataTypes.INTEGER,
+    idCategoria: DataTypes.INTEGER,
     price: DataTypes.INTEGER,
     img: DataTypes.STRING,
     stock: DataTypes.INTEGER,
+    status: DataTypes.STRING,
   }, {
     //Configuraciones generales de la tabla
     sequelize,

@@ -32,6 +32,7 @@ let usersController = {
     client_home:async(req,res)=>{
         let productos_lista = await products.findAll();
         let categorias_lista = await categories.findAll();
+        
         res.render("./client_home",{productos_lista,categorias_lista});
     },
     client_coleccion:async(req,res)=>{

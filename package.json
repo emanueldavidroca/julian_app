@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "start": "nodemon node app.js",
-    "prod":"nodemon node app.js prod"
+    "prod": "nodemon node app.js prod"
   },
   "dependencies": {
     "-": "^0.0.1",
     "async": "^3.2.4",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
     "ejs": "~2.6.1",
@@ -30,9 +31,8 @@
     "req-flash": "^0.0.3",
     "sequelize": "^6.28.0",
     "sequelize-cli": "^6.5.2",
+    "socket.io": "^4.5.4",
     "sweetalert2": "^11.7.0",
-    "winston": "^3.8.2",
-    "cors": "^2.8.5",
-    "socket.io": "^4.5.4"
+    "winston": "^3.8.2"
   }
 }

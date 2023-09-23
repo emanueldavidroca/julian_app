@@ -57,12 +57,13 @@
             </div>
         </div>
         <div class="expandible-sidebar-form">
-          <form action="/admin/productos" method="post">
+          <form action="/admin/productos" method="post" enctype="multipart/form-data">
             <h3>Nuevo Producto</h3>
             <hr>
             <div class="row justify-content-between">
               <div class="col-md-5">
-
+                <label for="imagen">Imagen</label>
+                <input type="file" name="imagen" id="imagen" class="form-control">
               </div>
               <div class="col-md-3">
                 <div class="form-group">

@@ -59,6 +59,8 @@ let adminController = {
             let {productName,description,barCode,price,category,stock} = req.body;
             let result = await products.create({productName,description,barCode,price,idCategoria:category,stock});
             if(result){
+                console.log(req.file);
+                let editar_ruta_imagen = await products.update({image:req.file.filename},{where:{id:result.id}});
                 res.redirect("/admin/productos");
             }
         } catch (error) {

@@ -339,6 +339,10 @@
   color: #fff;
 }
 
+.error {
+  color: red;
+}
+
 #admin {
   min-height: 100vh;
 }

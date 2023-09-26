@@ -14,12 +14,39 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+-- Dumping database structure for julian_app
+CREATE DATABASE IF NOT EXISTS `julian_app` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `julian_app`;
+
+-- Dumping structure for table julian_app.carts
+CREATE TABLE IF NOT EXISTS `carts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idProduct` int(11) DEFAULT NULL,
+  `idUser` int(11) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- Dumping data for table julian_app.carts: ~4 rows (approximately)
 REPLACE INTO `carts` (`id`, `idProduct`, `idUser`, `createdAt`, `updatedAt`, `deletedAt`, `quantity`) VALUES
 	(1, 2, 2, '2023-09-19 20:43:34', '2023-09-19 20:43:34', NULL, 1),
 	(2, 1, 1, '2023-09-19 20:43:34', '2023-09-19 20:43:34', NULL, 1),
 	(3, 1, 2, '2023-09-25 22:53:46', '2023-09-25 22:53:46', NULL, 1),
 	(4, 4, 2, '2023-09-26 17:57:15', '2023-09-26 17:57:15', NULL, 1);
+
+-- Dumping structure for table julian_app.categories
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoryName` varchar(50) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table julian_app.categories: ~10 rows (approximately)
 REPLACE INTO `categories` (`id`, `categoryName`, `createdAt`, `deletedAt`, `updatedAt`) VALUES
@@ -34,9 +61,46 @@ REPLACE INTO `categories` (`id`, `categoryName`, `createdAt`, `deletedAt`, `upda
 	(9, 'Limpieza', NULL, NULL, NULL),
 	(10, 'Indumentaria', NULL, NULL, NULL);
 
+-- Dumping structure for table julian_app.orders
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idUser` int(11) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `total` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- Dumping data for table julian_app.orders: ~0 rows (approximately)
 
+-- Dumping structure for table julian_app.orders_list
+CREATE TABLE IF NOT EXISTS `orders_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idProduct` int(11) DEFAULT NULL,
+  `idOrder` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- Dumping data for table julian_app.orders_list: ~0 rows (approximately)
+
+-- Dumping structure for table julian_app.products
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `productName` varchar(50) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `barCode` varchar(50) DEFAULT NULL,
+  `idCategoria` int(11) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `image` varchar(50) DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table julian_app.products: ~9 rows (approximately)
 REPLACE INTO `products` (`id`, `productName`, `description`, `barCode`, `idCategoria`, `price`, `image`, `stock`, `createdAt`, `deletedAt`, `updatedAt`, `status`) VALUES
@@ -49,6 +113,21 @@ REPLACE INTO `products` (`id`, `productName`, `description`, `barCode`, `idCateg
 	(11, 'prueba1', 'qwe', '1251654', 3, 2000, '1695752449031--prod2.png', 4, '2023-09-26 18:20:49', NULL, '2023-09-26 18:20:49', NULL),
 	(12, 'asd1', 'qwe qwe ', '16564213', 5, 2000, '1695752670540--prod5.png', 30, '2023-09-26 18:24:30', NULL, '2023-09-26 18:24:30', NULL),
 	(13, 'algo', 'algo algo algo', '465146516', 4, 1000, '1695753883824--prod6.png', 300, '2023-09-26 18:44:43', NULL, '2023-09-26 18:44:43', NULL);
+
+-- Dumping structure for table julian_app.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(50) DEFAULT NULL,
+  `fullName` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `rol` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table julian_app.users: ~4 rows (approximately)
 REPLACE INTO `users` (`id`, `usuario`, `fullName`, `password`, `email`, `createdAt`, `deletedAt`, `updatedAt`, `rol`) VALUES

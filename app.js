@@ -88,6 +88,11 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.use(function(req, res, next) {
+  res.locals.user = req.session;
+  next();
+});
+
 app.post("/admin/productos", upload.single("imagen"), (req, res,next) => {
   if (req.file) next();
   else res.status(404).send("Please upload a valid image");
@@ -96,6 +101,9 @@ app.use('/', indexRouter);
 app.use('/client', clientRouter);
 app.use('/admin', adminRouter);
 
+app.use((req, res, next) => {
+  res.redirect("/client/home");
+})
 module.exports = app;
 
 

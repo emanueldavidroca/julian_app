@@ -5,15 +5,22 @@
                 <b>Checkout</b>Express
             </a>
             <div>
-                <a href="/client/cart" class="btn">
-                    <i class="fa-solid fa-cart-shopping"></i> 1
-                </a>
-                <a href="/client/wishlist" class="btn">
-                    <i class="fa-regular fa-heart"></i> 2
-                </a>
-                <button class="btn">
-                    <i class="fa-solid fa-user"></i> Julian
-                </button>
+                <% if (user && user.idUser) { %>
+                    <a href="/client/cart" class="btn" id="cart_icon">
+                        <i class="fa-solid fa-cart-shopping"></i> <%- (cartCount > 0)? cartCount : "" %>
+                    </a>
+                    <a href="/client/wishlist" class="btn">
+                        <i class="fa-regular fa-heart"></i> 
+                    </a>
+                    <a href="/client/mi_cuenta" class="btn">
+                        <i class="fa-solid fa-user"></i> <%- user.usuario %>
+                    </a>
+                <% }else{ %>
+                    <a href="/client/login" class="btn">
+                        <i class="fa-solid fa-user"></i> Ingresar
+                    </a>
+                <% } %>
+                
             </div>
         </div>
         <div class="middle-bar row">

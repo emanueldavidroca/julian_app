@@ -1,4 +1,120 @@
 <%- include("./partials/head.ejs") %> 
+
+<% if (status != "undefined" && status == "exito") { %>
+ <!-- Modal -->
+<div class="modal fade" id="alerta_success" tabindex="-1" aria-labelledby="alerta_success" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success" id="alerta_success">Usuario insertado</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        El usuario fue insertado en el sistema exitosamente.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  window.addEventListener('load', function() {
+    var myModal = new bootstrap.Modal(document.getElementById('alerta_success'))
+    myModal.show();
+  });
+</script>
+<% } %>
+
+<% if (status != "undefined" && status == "email_repetido") { %>
+  <!-- Modal -->
+ <div class="modal fade" id="alerta_success" tabindex="-1" aria-labelledby="alerta_success" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title text-danger" id="alerta_success">Error en Email</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+        El email ingresado ya existe en la base de datos.
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       </div>
+     </div>
+   </div>
+ </div>
+ 
+ <script type="text/javascript">
+   window.addEventListener('load', function() {
+     var myModal = new bootstrap.Modal(document.getElementById('alerta_success'))
+     myModal.show();
+   });
+ </script>
+ <% } %>
+<script>
+	$.validator.setDefaults({
+		submitHandler: function() {
+			form.submit()
+		}
+	});
+
+	$().ready(function() {
+
+		// validate signup form on keyup and submit
+		$("#form-usuarios").validate({
+			rules: {
+				fullName: {
+					required: true,
+					minlength: 4,
+				},
+				email: {
+					required: true,
+          email:true,
+				},
+				username: {
+					required: true,
+					minlength: 4,
+				},
+        password: {
+					required: true,
+					minlength: 6,
+
+				},
+        password2: {
+					required: true,
+					minlength: 6,
+          equalTo: "#password"
+				}
+			},
+			messages: {
+				fullName: {
+					required: "Ingrese un nombre completo",
+					minlength: "Nombre completo debe tener al menos 4 caracteres o mas",
+				},
+				email: {
+					required: "Ingrese un email",
+          email:"el email debe ser valido",
+				},
+				username: {
+					required: "Ingrese un usuario",
+					minlength: "El usuario debe tener minimo 4 caracteres",
+				},
+        password: {
+					required: "Ingrese la contraseña",
+					minlength: "La contraseña debe tener minimo 6 caracteres",
+
+				},
+        password2: {
+					required: "Repita la contraseña",
+					minlength: "La contraseña debe tener minimo 6 caracteres",
+          equalTo: "Las contraseñas no son iguales"
+				}
+			}
+		});
+	});
+</script>
 <body>
     <section id="admin" class="admin_usuarios">
         <div class="row gx-0">
@@ -8,7 +124,8 @@
                 <p class="subtitle">Gestión de usuarios</p>
                 <div class="row justify-content-center align-items-center" id="search_bar">
                     <div class="col-md-2">
-                        <button class="btn btn-primary px-4"><i class="fa-solid fa-plus"></i> Nuevo</button>
+                        <button class="btn btn-primary px-4"
+                        onClick="document.querySelector('.expandible-sidebar-form').classList.add('activo');"><i class="fa-solid fa-plus"></i> Nuevo</button>
                     </div>
                     <div class="col-md-7 d-flex ">
                         <input type="text" class="form-control form-control-lg" placeholder="Buscar...">
@@ -64,6 +181,61 @@
                     </tbody>
                   </table>
             </div>
+        </div>
+        <div class="expandible-sidebar-form">
+          <form action="/admin/usuarios" method="post" id="form-usuarios">
+            <% if (mensaje && mensaje == "success") { %>
+              EXITO
+            <% } %>
+            <% if (mensaje && mensaje == "error") { %>
+              ERROR
+            <% } %>
+            <h3>Nuevo Usuario</h3>
+            <hr>
+            <div class="row justify-content-between">
+              <div class="col-md-5">
+                <label for="imagen">Imagen</label>
+                <input type="file" name="imagen" id="imagen" class="form-control">
+              </div>
+              <div class="col-md-7">
+                <div class="form-group">
+                  <label for="fullName">Nombre y Apellido</label>
+                  <input type="text" name="fullName" id="fullName" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" autocomplete="new-email" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="username">Usuario</label>
+              <input type="text" name="username" id="username" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña</label>
+              <input type="password" name="password" id="password" autocomplete="new-password" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="password2">Repetir Contraseña</label>
+              <input type="password" name="password2" id="password2" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="rol">Rol</label>
+              <select name="rol" id="rol" class="form-control">
+                <option >Seleccionar categoria</option>
+                <option value="administrador">Administrador</option>
+                <option value="cliente">Cliente</option>
+
+              </select>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="button" onClick="document.querySelector('.expandible-sidebar-form').classList.remove('activo');" class="btn btn-danger">Cerrar</button>
+            </div>
+            
+          </form>
         </div>
     </section>
 </body>

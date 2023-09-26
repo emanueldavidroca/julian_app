@@ -1,8 +1,7 @@
 const userRolValidation = (type) =>{
     return (req, res, next) => {
         let sess = req.session ?? null;
-        console.log(sess);
-        if(sess.email){
+        if(sess.email && type == sess.rol){
             next()
         }
         else{

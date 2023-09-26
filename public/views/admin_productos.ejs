@@ -1,19 +1,74 @@
 <%- include("./partials/head.ejs") %> 
+
+<% if (status != "undefined" && status == "exito") { %>
+ <!-- Modal -->
+<div class="modal fade" id="alerta_success" tabindex="-1" aria-labelledby="alerta_success" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success" id="alerta_success">Producto insertado</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        El producto fue insertado en el sistema exitosamente
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  window.addEventListener('load', function() {
+    var myModal = new bootstrap.Modal(document.getElementById('alerta_success'))
+    myModal.show();
+  });
+</script>
+<% } %>
+
+<% if (status != "undefined" && status == "error") { %>
+  <!-- Modal -->
+ <div class="modal fade" id="alerta_success" tabindex="-1" aria-labelledby="alerta_success" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title text-error" id="alerta_success">Error en producto</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+        Surgio un error en el ingreso del producto, revise los datos.
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       </div>
+     </div>
+   </div>
+ </div>
+ 
+ <script type="text/javascript">
+   window.addEventListener('load', function() {
+     var myModal = new bootstrap.Modal(document.getElementById('alerta_success'))
+     myModal.show();
+   });
+ </script>
+ <% } %>
+
+
 <script>
 	$.validator.setDefaults({
 		submitHandler: function() {
-			alert("submitted!");
+			form.submit();
 		}
 	});
 
 	$().ready(function() {
-
 		// validate signup form on keyup and submit
 		$("#form-productos").validate({
 			rules: {
 				stock: {
 					required: true,
-					digit:true
+					digits:true
 				},
 				productName: {
 					required: true,
@@ -159,6 +214,7 @@
 
             <div class="form-group">
               <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="button" onClick="document.querySelector('.expandible-sidebar-form').classList.remove('activo');" class="btn btn-danger">Cerrar</button>
             </div>
             
           </form>

@@ -1,6 +1,10 @@
 const session = require("express-session");
 const {users,products,categories,carts} = require("../database/models");
 
+/*let getCartCount = async()=>{
+    let cartCount = res.locals.user.idUser
+}*/
+
 let usersController = {
     client_login:(req,res)=>{
         res.render("./client_login");
@@ -9,7 +13,6 @@ let usersController = {
         try{
             const {password,email} = req.body;
             let result = await users.findOne({where:{password:password,email:email,rol:"cliente"}});
-            console.log(result);
             if(result){
                 let sess = req.session;
                 sess.email = result.email;
@@ -22,7 +25,7 @@ let usersController = {
                 res.redirect("/client/home");
             }
             else{
-                res.render("/client/login",{error:true});
+                res.redirect("/client/login?error=true");
             }
         }
         catch(e){
@@ -30,40 +33,61 @@ let usersController = {
         }
     },
     client_home:async(req,res)=>{
+        let sess = req.session;
         let productos_lista = await products.findAll();
         let categorias_lista = await categories.findAll();
+        let contador_carrito = [];
+        if(sess.idUser){
+            contador_carrito = await carts.findAll({where:{idUser:sess.idUser}});
+        }
         
-        res.render("./client_home",{productos_lista,categorias_lista});
+        res.render("./client_home",{productos_lista,categorias_lista,cartCount:contador_carrito.length});
     },
     client_coleccion:async(req,res)=>{
+        let sess = req.session;
         let categorias_lista = await categories.findAll();
         let idCategoria = req.params.id;
         let categoria_actual = await categories.findOne({where:{id:idCategoria}});
         let productos = await products.findAll({where:{idCategoria}});
-        res.render("./client_coleccion",{productos,categoria_actual,categorias_lista});
+        let contador_carrito = [];
+        if(sess.idUser){
+            contador_carrito = await carts.findAll({where:{id:sess.idUser}});
+        }
+        res.render("./client_coleccion",{productos,categoria_actual,categorias_lista,cartCount:contador_carrito.length});
     },
     client_cart:async(req,res)=>{
         let sess = req.session;
         let carrito_lista = await carts.findAll({where:{idUser:sess.idUser},include:[{model:products,as:"producto"},{model:users,as:"usuario",where:{id:sess.idUser}}]});
         let categorias_lista = await categories.findAll();
-        res.render("./client_cart",{categorias_lista,carrito_lista});
+        let contador_carrito = [];
+        if(sess.idUser){
+            contador_carrito = await carts.findAll({where:{id:sess.idUser}});
+        }
+        res.render("./client_cart",{categorias_lista,carrito_lista,cartCount:contador_carrito.length});
     },
     client_wishlist:async(req,res)=>{
+        let sess = req.session;
         let categorias_lista = await categories.findAll();
-
-        res.render("./client_wishlist",{categorias_lista});
+        let contador_carrito = [];
+        if(sess.idUser){
+            contador_carrito = await carts.findAll({where:{id:sess.idUser}});
+        }
+        res.render("./client_wishlist",{categorias_lista,cartCount:contador_carrito.length});
     },
     client_scan:async(req,res)=>{
+        let sess = req.session;
         let categorias_lista = await categories.findAll();
-
-        res.render("./client_scan",{categorias_lista});
+        let contador_carrito = [];
+        if(sess.idUser){
+            contador_carrito = await carts.findAll({where:{id:sess.idUser}});
+        }
+        res.render("./client_scan",{categorias_lista,cartCount:contador_carrito.length});
     },
     client_scanning:async(req,res)=>{
         try {
             let sess = req.session;
             let {barCode} = req.body;
             let find_product = await products.findOne({where:{barCode}});
-            console.log(sess)
             if(find_product){
                 let find_cart = await carts.findOne({where:{idUser:sess.idUser,idProduct:find_product.id}});
                 if(find_cart){

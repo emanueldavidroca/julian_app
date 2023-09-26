@@ -6,6 +6,9 @@
             <b>Productos</b> | <%- categoria_actual.categoryName %>
         </p>
         <div class="row justify-content-around px-5" id="productos">
+            <% if (productos.length == 0 ) { %>
+            <p class="text-center">Cateoria <b><%- categoria_actual.categoryName %></b> sin productos. </p>
+            <% } %>
             <% productos.forEach(prod => { %>
                 <div class="col-4 card-producto">
                     <img src="/assets/img/prod<%- prod.id %>.png" alt="">
@@ -22,7 +25,7 @@
             <% }) %>
         </div>
 
-        <img src="/assets/img/scanning.png" class="w-100 my-5" alt="">
+        <a href="/client/scan"><img src="/assets/img/scanning.png" class="w-100 my-5" alt=""></a>
 
         <!-- CLIENTES -->
         <p class="title-productos mt-5">

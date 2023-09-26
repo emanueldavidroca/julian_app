@@ -11,7 +11,6 @@ let adminController = {
             let {email,password} = req.body;
         
             let checkLogin = await users.findOne({where:{email:email,password:password,rol:"administrador"}});
-            console.log(checkLogin)
             if(checkLogin){
                 let sess = req.session;
                 sess.email = checkLogin.email;
@@ -47,9 +46,10 @@ let adminController = {
     },
     admin_productos: async (req, res) => {
         try {
+            let status = req.query.mensaje ?? null;
             let array_productos = await products.findAll({include:{model:categories,as:"categoria"}});
             let array_categorias = await categories.findAll();
-            res.render("./admin_productos",{array_productos,array_categorias});
+            res.render("./admin_productos",{array_productos,array_categorias,status});
         } catch (error) {
             console.log(error)
         }
@@ -58,10 +58,12 @@ let adminController = {
         try {
             let {productName,description,barCode,price,category,stock} = req.body;
             let result = await products.create({productName,description,barCode,price,idCategoria:category,stock});
+            
             if(result){
-                console.log(req.file);
                 let editar_ruta_imagen = await products.update({image:req.file.filename},{where:{id:result.id}});
-                res.redirect("/admin/productos");
+                res.redirect("/admin/productos?mensaje=exito");
+            }else{
+                res.redirect("/admin/productos?mensaje=error");
             }
         } catch (error) {
             console.log(error)
@@ -69,10 +71,39 @@ let adminController = {
         
     },
     admin_usuarios: (req, res) => {
-        res.render("./admin_usuarios");
+        let mensaje;
+        let status = req.query.mensaje ?? null;
+        if(req.query.mensaje)
+            mensaje = req.query.mensaje;
+        
+        res.render("./admin_usuarios",{mensaje,status});
     },
-    admin_crearUsuarios: (req, res) => {
-        res.render("./admin_productos");
+    admin_crearUsuarios:async (req, res) => {
+        try {
+            
+            let {fullName,email,username,password,password2,rol} = req.body;
+            if(password != password2){
+                throw new Error('Contraseña distinta');
+            }
+            console.log(req.body)
+            let check_email = await users.findAll({where:{email}}); 
+            if(check_email.length > 0 ){
+                res.redirect("/admin/usuarios?mensaje=email_repetido");
+            }else{
+                let result = await users.create({fullName,email,password,usuario:username,rol});
+                if(result){
+                    //let editar_ruta_imagen = await users.update({image:req.file.filename},{where:{id:result.id}});
+                    res.redirect("/admin/usuarios?mensaje=exito");
+                }else{
+                    res.redirect("/admin/usuarios?mensaje=error");
+                }
+            }
+            
+        } catch (error) {
+            if(error == 'Email repetido')
+                res.redirect("/admin/usuarios?mensaje=email_repetido");
+            console.log(error)
+        }
     },
     admin_editar: (req, res) => {
         res.render("./editar");

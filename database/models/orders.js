@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   //Relacion entre tablas
   class orders extends Model {
     static associate(models) {
+      orders.hasOne(models.orders_lists,{foreignKey:"idOrder"})
+      orders.belongsTo(models.users,{foreignKey:"idUser",as:"usuario",targetKey:"id"});
     }
   }
   //Columnas
@@ -13,6 +15,15 @@ module.exports = (sequelize, DataTypes) => {
     idUser: DataTypes.INTEGER,
     total: DataTypes.INTEGER,
     status: DataTypes.STRING,
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    email: DataTypes.STRING,
+    address: DataTypes.STRING,
+    estate: DataTypes.STRING,
+    phone: DataTypes.INTEGER,
+    codPostal: DataTypes.INTEGER,
+    payment_method: DataTypes.STRING,
+    receipt: DataTypes.STRING,
   }, {
     //Configuraciones generales de la tabla
     sequelize,

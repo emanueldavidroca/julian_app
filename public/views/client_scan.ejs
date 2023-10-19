@@ -1,4 +1,15 @@
 <%- include("./partials/head.ejs") %> 
+
+<% if (status == "agregado") { %>
+    <script>
+        $(document).ready(function () {
+            bootbox.alert({
+                title: '<b class="text-success">Agregado!</b>',
+                message: 'Producto agregado al carrito.',
+            });
+        });
+    </script>
+<% } %>
 <body id="client" class="client_scan">
     <%- include("./partials/client_header.ejs") %> 
     <main class="px-5">

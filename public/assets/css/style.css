@@ -126,7 +126,7 @@
 .client_home #carouselHome .carousel-caption h5 {
   font-size: 3.5rem;
 }
-.client_home #carouselHome .carousel-caption button {
+.client_home #carouselHome .carousel-caption a {
   background-color: rgb(255, 149, 0);
   color: #fff;
   padding-left: 2rem;
@@ -147,10 +147,10 @@
   padding-right: 0.5rem;
 }
 .client_cart #cart section {
-  padding: 1.5rem;
+  padding: 0.85rem 1.5rem;
   border: 2px grey solid;
   border-radius: 10px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .client_cart #cart #metodoPago {
   margin-top: 2rem;
@@ -169,11 +169,18 @@
   width: 2rem;
   height: 2rem;
 }
-.client_cart #cart #metodoPago .tarjetas {
+.client_cart #cart #metodoPago .mercadopago.activo {
   border: 2px rgb(0, 128, 255) solid;
+}
+.client_cart #cart #metodoPago .mercadopago.activo > label {
+  color: rgb(0, 128, 255);
+}
+.client_cart #cart #metodoPago .tarjetas {
+  border: 2px grey solid;
   padding: 1rem;
   position: relative;
   border-radius: 10px;
+  margin-bottom: 1.5rem;
 }
 .client_cart #cart #metodoPago .tarjetas .cards {
   width: 13rem;
@@ -182,12 +189,53 @@
   top: 1rem;
   right: 1rem;
 }
+.client_cart #cart #metodoPago .tarjetas .row {
+  display: none;
+}
+.client_cart #cart #metodoPago .tarjetas.activo {
+  border: 2px rgb(0, 128, 255) solid;
+}
+.client_cart #cart #metodoPago .tarjetas.activo .row {
+  display: flex;
+}
+.client_cart #cart #metodoPago .tarjetas.activo > label {
+  color: rgb(0, 128, 255);
+}
 .client_cart #cart #metodoPago .seguridad {
   margin-top: 1rem;
 }
 .client_cart #cart #metodoPago .seguridad .icon {
   height: 2rem;
   width: 2rem;
+}
+.client_cart #cart #metodoPago .transferencia {
+  border: 2px grey solid;
+  padding: 1rem;
+  position: relative;
+  border-radius: 10px;
+}
+.client_cart #cart #metodoPago .transferencia .row.bancario {
+  border: 1px rgb(187, 187, 187) solid;
+  background-color: #fbfbfb;
+  box-shadow: 0px 0px 12px rgba(163, 163, 163, 0.62);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.client_cart #cart #metodoPago .transferencia .row {
+  border-radius: 8px;
+  padding: 15px 10px;
+  margin-left: 1.5rem;
+  width: 60%;
+  display: none;
+}
+.client_cart #cart #metodoPago .transferencia.activo {
+  border: 2px rgb(0, 128, 255) solid;
+}
+.client_cart #cart #metodoPago .transferencia.activo > label {
+  color: rgb(0, 128, 255);
+}
+.client_cart #cart #metodoPago .transferencia.activo .row {
+  display: flex;
 }
 .client_cart #cart #sidebar-cart .accordion-button p {
   font-weight: bold;

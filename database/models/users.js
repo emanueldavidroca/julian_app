@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   class users extends Model {
     static associate(models) {
       users.hasOne(models.carts,{foreignKey:"idUser"})
-
+      users.hasOne(models.orders,{foreignKey:"idUser"})
     }
   }
   //Columnas
@@ -17,12 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     rol: DataTypes.STRING,
+    image: DataTypes.STRING,
   }, {
     //Configuraciones generales de la tabla
     sequelize,
     modelName: 'users',
-    paranoid:false,
-    timestamps:false
+    paranoid:true,
+    timestamps:true
   });
   return users;
 };

@@ -46,7 +46,7 @@ let adminController = {
     },
     admin_productos: async (req, res) => {
         try {
-            let status = req.query.mensaje ?? null;
+            let status = req.query.status ?? null;
             let array_productos = await products.findAll({include:{model:categories,as:"categoria"}});
             let array_categorias = await categories.findAll();
             res.render("./admin_productos",{array_productos,array_categorias,status});
@@ -71,12 +71,8 @@ let adminController = {
         
     },
     admin_usuarios: (req, res) => {
-        let mensaje;
-        let status = req.query.mensaje ?? null;
-        if(req.query.mensaje)
-            mensaje = req.query.mensaje;
-        
-        res.render("./admin_usuarios",{mensaje,status});
+        let status = req.query.status ?? null;
+        res.render("./admin_usuarios",{status});
     },
     admin_crearUsuarios:async (req, res) => {
         try {
@@ -90,7 +86,8 @@ let adminController = {
             if(check_email.length > 0 ){
                 res.redirect("/admin/usuarios?mensaje=email_repetido");
             }else{
-                let result = await users.create({fullName,email,password,usuario:username,rol});
+
+                let result = await users.create({fullName,email,password,usuario:username,rol,image:req.file.filename ?? null });
                 if(result){
                     //let editar_ruta_imagen = await users.update({image:req.file.filename},{where:{id:result.id}});
                     res.redirect("/admin/usuarios?mensaje=exito");

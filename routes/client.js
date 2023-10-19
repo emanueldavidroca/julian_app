@@ -12,6 +12,7 @@ router.post("/scan",userRolValidation("cliente"),clientController.client_scannin
 router.get("/home",clientController.client_home);
 router.get("/coleccion/:id",clientController.client_coleccion);
 router.get("/cart",userRolValidation("cliente"),clientController.client_cart);
+router.post("/cart",userRolValidation("cliente"),clientController.client_shopping);
 
 
 module.exports = router;

@@ -12,34 +12,59 @@ const multer = require("multer");
 let port = process.env.PORT;
 let app = express();
 
-//Setting storage engine
-const storage = multer.diskStorage({
-  destination: "./public/assets/imagen_productos",
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}--${file.originalname}`);
-  },
-});
+const almacenamiento = (nombre_carpeta)=>{
+  const storage = multer.diskStorage({
+    destination: "./public/assets/"+nombre_carpeta,
+    filename: (req, file, cb) => {
+      cb(null, `${Date.now()}__${file.originalname}`);
+    },
+  });
+  return storage;
+}
 
-const verificarImagen = function (file, cb) {
-  const fileTypes = /jpeg|jpg|png|bmp/;
+const verificarImagen = function (file, cb,ext) {
+  const fileTypes = ext;
 
   const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
-
   const mimeType = fileTypes.test(file.mimetype);
-
-  if (mimeType && extName) return cb(null, true);
+  if (extName && mimeType) return cb(null, true);
   else cb("Error de carga de imagen");
-
 };
 
 //initializing multer
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 1000000 },
-  fileFilter: (req, file, cb) => {
-    verificarImagen(file, cb);
-  },
-});
+const guardar_archivo = (archivo)=>{
+  if(archivo == "producto"){
+    const upload = multer({
+      storage: almacenamiento("imagen_productos"),
+      limits: { fileSize: 1000000 },
+      fileFilter: (req, file, cb) => {
+        verificarImagen(file, cb,/jpeg|jpg|png/);
+      },
+    });
+    return upload.single("imagen")
+  }
+  else if(archivo == "usuario"){
+    const upload = multer({
+      storage: almacenamiento("imagen_usuarios"),
+      limits: { fileSize: 1000000 },
+      fileFilter: (req, file, cb) => {
+        verificarImagen(file, cb,/jpeg|jpg|png/);
+      },
+    });
+    return upload.single("imagen")
+  }
+  else if(archivo == "carrito"){
+    const upload = multer({
+      storage: almacenamiento("imagen_comprobante"),
+      limits: { fileSize: 1000000 },
+      fileFilter: (req, file, cb) => {
+        verificarImagen(file, cb,/jpeg|jpg|png|pdf/);
+      },
+    });
+    return upload.single("archivo")
+  }
+}
+
 
 app.set('trust proxy', 1) // trust first proxy
 
@@ -93,9 +118,18 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.post("/admin/productos", upload.single("imagen"), (req, res,next) => {
+app.post("/admin/productos", guardar_archivo("producto"), (req, res,next) => {
   if (req.file) next();
-  else res.status(404).send("Please upload a valid image");
+  else next();
+});
+
+app.post("/admin/usuarios", guardar_archivo("usuario"), (req, res,next) => {
+  if (req.file) next();
+  else next();
+});
+app.post("/client/cart", guardar_archivo("carrito"), (req, res,next) => {
+  if (req.file) next();
+  else next();
 });
 app.use('/', indexRouter);
 app.use('/client', clientRouter);

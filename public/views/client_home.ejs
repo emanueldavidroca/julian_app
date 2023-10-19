@@ -1,5 +1,35 @@
 <%- include("./partials/head.ejs") %> 
 <body id="client" class="client_home">
+    <% if (status == "completado") { %>
+        <script>
+            $(document).ready(function () {
+                bootbox.alert({
+                    title: '<b class="text-success">Orden completada!</b>',
+                    message: 'Espere al administrador revisa su orden.',
+                });
+            });
+        </script>
+    <% } %>
+    <% if (status == "error") { %>
+        <script>
+            $(document).ready(function () {
+                bootbox.alert({
+                    title: '<b class="text-danger">Error!</b>',
+                    message: 'Error inesperado.',
+                });
+            });
+        </script>
+    <% } %>
+    <% if (status == "vacio") { %>
+        <script>
+            $(document).ready(function () {
+                bootbox.alert({
+                    title: '<b class="text-danger">Carrito vacio!</b>',
+                    message: 'Sume productos al carrito.',
+                });
+            });
+        </script>
+    <% } %>
     <%- include("./partials/client_header.ejs") %> 
     <main class="px-5">
         <div id="carouselHome" class="carousel slide">

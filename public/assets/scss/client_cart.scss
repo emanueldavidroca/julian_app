@@ -9,10 +9,10 @@
             padding-right: 0.5rem;
         }
         section{
-            padding: 1.5rem;
+            padding: 0.85rem 1.5rem;
             border: 2px  grey solid;
             border-radius: 10px;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             #direccionFacturacion{
 
             }
@@ -33,11 +33,18 @@
                     height: 2rem;
                 }
             }
-            .tarjetas{
+            .mercadopago.activo{
                 border: 2px rgb(0, 128, 255) solid;
+                > label{
+                    color: rgb(0, 128, 255);
+                }
+            }
+            .tarjetas{
+                border: 2px grey solid;
                 padding: 1rem;
                 position: relative;
                 border-radius: 10px;
+                margin-bottom: 1.5rem;
 
                 .cards{
                     width: 13rem;
@@ -45,6 +52,19 @@
                     position: absolute;
                     top: 1rem;
                     right: 1rem;
+                }
+                .row{
+                    display: none;
+                }
+                
+            }
+            .tarjetas.activo{
+                border: 2px rgb(0, 128, 255) solid;
+                .row{
+                    display: flex;
+                }
+                > label{
+                    color: rgb(0, 128, 255);
                 }
             }
             .seguridad{
@@ -54,6 +74,36 @@
                     width: 2rem;
                 }
                 
+            }
+            .transferencia{
+                border: 2px grey solid;
+                padding: 1rem;
+                position: relative;
+                border-radius: 10px;
+                .row.bancario{
+                    border: 1px rgb(187, 187, 187) solid;
+                    background-color: #fbfbfb;
+                    box-shadow: 0px 0px 12px rgba(163, 163, 163,0.62);
+                    margin-top: 1.5rem;
+                    margin-bottom: 0.5rem;
+                }
+                .row{
+                    border-radius: 8px;
+                    padding: 15px 10px;
+                    margin-left: 1.5rem;
+                    width: 60%; 
+                    display: none;
+                }
+                
+            }
+            .transferencia.activo{
+                border: 2px rgb(0, 128, 255) solid;
+                > label{
+                    color: rgb(0, 128, 255);
+                }
+                .row{
+                    display: flex;
+                }
             }
         }
         #sidebar-cart{

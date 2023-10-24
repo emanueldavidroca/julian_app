@@ -61,9 +61,9 @@ let adminController = {
             
             if(result){
                 let editar_ruta_imagen = await products.update({image:req.file.filename},{where:{id:result.id}});
-                res.redirect("/admin/productos?mensaje=exito");
+                res.redirect("/admin/productos?status=success");
             }else{
-                res.redirect("/admin/productos?mensaje=error");
+                res.redirect("/admin/productos?status=error");
             }
         } catch (error) {
             console.log(error)
@@ -84,21 +84,21 @@ let adminController = {
             console.log(req.body)
             let check_email = await users.findAll({where:{email}}); 
             if(check_email.length > 0 ){
-                res.redirect("/admin/usuarios?mensaje=email_repetido");
+                res.redirect("/admin/usuarios?status=email_repetido");
             }else{
 
                 let result = await users.create({fullName,email,password,usuario:username,rol,image:req.file.filename ?? null });
                 if(result){
                     //let editar_ruta_imagen = await users.update({image:req.file.filename},{where:{id:result.id}});
-                    res.redirect("/admin/usuarios?mensaje=exito");
+                    res.redirect("/admin/usuarios?status=success");
                 }else{
-                    res.redirect("/admin/usuarios?mensaje=error");
+                    res.redirect("/admin/usuarios?status=error");
                 }
             }
             
         } catch (error) {
             if(error == 'Email repetido')
-                res.redirect("/admin/usuarios?mensaje=email_repetido");
+                res.redirect("/admin/usuarios?status=email_repetido");
             console.log(error)
         }
     },

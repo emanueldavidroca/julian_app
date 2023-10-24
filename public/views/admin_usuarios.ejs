@@ -1,30 +1,24 @@
 <%- include("./partials/head.ejs") %> 
 
-<% if (status != "undefined" && status == "exito") { %>
- <!-- Modal -->
-<div class="modal fade" id="alerta_success" tabindex="-1" aria-labelledby="alerta_success" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-success" id="alerta_success">Usuario insertado</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        El usuario fue insertado en el sistema exitosamente.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script type="text/javascript">
-  window.addEventListener('load', function() {
-    var myModal = new bootstrap.Modal(document.getElementById('alerta_success'))
-    myModal.show();
-  });
-</script>
+<% if (status == "success") { %>
+  <script>
+      $(document).ready(function () {
+          bootbox.alert({
+              title: '<b class="text-success">Agregado!</b>',
+              message: 'El usuario fue dado de alta correctamente.',
+          });
+      });
+  </script>
+<% } %>
+<% if (status == "error") { %>
+  <script>
+      $(document).ready(function () {
+          bootbox.alert({
+              title: '<b class="text-danger">Error!</b>',
+              message: 'Error inesperado contacte al administrador.',
+          });
+      });
+  </script>
 <% } %>
 
 <% if (status != "undefined" && status == "email_repetido") { %>
@@ -184,12 +178,7 @@
         </div>
         <div class="expandible-sidebar-form">
           <form action="/admin/usuarios" method="post" id="form-usuarios" enctype="multipart/form-data">
-            <% if (mensaje && mensaje == "success") { %>
-              EXITO
-            <% } %>
-            <% if (mensaje && mensaje == "error") { %>
-              ERROR
-            <% } %>
+
             <h3>Nuevo Usuario</h3>
             <hr>
             <div class="row justify-content-between">

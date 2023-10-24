@@ -1,6 +1,29 @@
 <%- include("./partials/head.ejs") %> 
 <body id="client" class="client_coleccion">
+    <% if (status == "acumulado") { %>
+        <script>
+            $(document).ready(function () {
+                bootbox.alert({
+                    title: '<b class="text-success">Agregado!</b>',
+                    message: 'Producto aumento en cantidad en el carrito.',
+                });
+            });
+        </script>
+    <% } %>
+    <% if (status == "agregado") { %>
+        <script>
+            $(document).ready(function () {
+                bootbox.alert({
+                    title: '<b class="text-success">Agregado!</b>',
+                    message: 'Producto agregado al carrito.',
+                });
+            });
+        </script>
+    <% } %>
     <%- include("./partials/client_header.ejs") %> 
+    <form action="/client/add_to_cart" method="post" id="form_add_to_cart">
+        <input type="hidden" name="back" value="/client/coleccion/<%- categoria_actual.id %>">
+    </form>
     <main class="px-5">
         <p class="title-productos mt-5">
             <b>Productos</b> | <%- categoria_actual.categoryName %>
@@ -19,7 +42,7 @@
                         <div class="col-8 text-start">$<%- prod.price %></div>
                         <div class="col-4 text-danger text-end">-40% off</div>
                     </div>
-                    <button class="btn-naranja btn mx-auto d-block mt-3 w-100">Agregar</button>
+                    <button class="btn-naranja btn mx-auto d-block mt-3 w-100" name="idProduct" form="form_add_to_cart" value="<%- prod.id %>">Agregar</button>
     
                 </div>
             <% }) %>
@@ -45,7 +68,7 @@
                                 <div class="col-4 text-danger text-end">-<%- prod.discount -%>% off</div>
                             <% } %>
                         </div>
-                        <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+                        <button class="btn-naranja btn mx-auto d-block mt-3 w-75" name="idProduct" form="form_add_to_cart" value="<%- prod.id %>">Agregar</button>
         
                     </div>
                 <% }) %>
@@ -88,7 +111,7 @@
                             <div class="col-4 text-danger text-end">-<%- prod.discount -%>% off</div>
                         <% } %>
                     </div>
-                    <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+                    <button class="btn-naranja btn mx-auto d-block mt-3 w-75"  name="idProduct" form="form_add_to_cart" value="<%- prod.id %>">Agregar</button>
                 </div>
             <% }) %>
         </div>

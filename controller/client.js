@@ -10,6 +10,12 @@ let usersController = {
     client_login:(req,res)=>{
         res.render("./client_login");
     },
+    cerrar_sesion:(req,res)=>{
+        req.session.destroy((err)=>{
+            console.log("destroy");
+        });
+        res.redirect("/client/home");
+    },
     client_logear:async (req,res)=>{
         try{
             const {password,email} = req.body;
@@ -49,6 +55,7 @@ let usersController = {
         let sess = req.session;
         let categorias_lista = await categories.findAll();
         let idCategoria = req.params.id;
+        let {status} = req.query;
         let categoria_actual = await categories.findOne({where:{id:idCategoria}});
         let productos = await products.findAll({where:{idCategoria}});
         let productos_oferta_lista = await products.findAll({where:{idCategoria,discount:{[Op.gte]:0}}});
@@ -58,7 +65,7 @@ let usersController = {
         if(sess.idUser){
             contador_carrito = await carts.findAll({where:{id:sess.idUser}});
         }
-        res.render("./client_coleccion",{productos,categoria_actual,categorias_lista,cartCount:contador_carrito.length,dia_oferta_lista,productos_oferta_lista,productos_buscados_lista});
+        res.render("./client_coleccion",{productos,categoria_actual,categorias_lista,cartCount:contador_carrito.length,dia_oferta_lista,productos_oferta_lista,productos_buscados_lista,status});
     },
     client_cart:async(req,res)=>{
         
@@ -135,6 +142,29 @@ let usersController = {
                 }
             }else{
                 res.redirect("/client/scan?error=not-found");
+    
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+    },
+    client_add_to_cart:async(req,res)=>{
+        try {
+            let sess = req.session;
+            let {idProduct,back} = req.body;
+            let find_product = await products.findOne({where:{id:idProduct}});
+            if(find_product){
+                let find_cart = await carts.findOne({where:{idUser:sess.idUser,idProduct:find_product.id}});
+                if(find_cart){
+                    let add_cart = await carts.update({quantity:(find_cart.quantity + 1)},{where:{id:find_cart.id}})
+                    res.redirect(back+"?status=acumulado");
+                }else{
+                    let add_cart = await carts.create({idUser:sess.idUser,idProduct:find_product.id,quantity:1});
+                    res.redirect(back+"?status=agregado");
+                }
+            }else{
+                res.redirect(back+"?status=not-found");
     
             }
         } catch (error) {

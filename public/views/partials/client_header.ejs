@@ -12,9 +12,24 @@
                     <a href="/client/wishlist" class="btn">
                         <i class="fa-regular fa-heart"></i> 
                     </a>
-                    <a href="/client/mi_cuenta" class="btn">
-                        <i class="fa-solid fa-user"></i> <%- user.usuario %>
-                    </a>
+                    <div class="dropdown d-inline-block">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <%- user.usuario %> <i class="fa-solid fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a href="/client/mi_cuenta" class="dropdown-item btn">
+                                    Mi cuenta
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/client/logout" class="dropdown-item btn text-danger">
+                                    Cerrar sesion
+                                </a>
+                            </li>
+                        </ul>
+                      </div>
+                    
                 <% }else{ %>
                     <a href="/client/login" class="btn">
                         <i class="fa-solid fa-user"></i> Ingresar

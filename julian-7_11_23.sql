@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `updatedAt` datetime DEFAULT NULL,
   `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table julian_app.orders: ~2 rows (approximately)
 DELETE FROM `orders`;
@@ -127,9 +127,9 @@ CREATE TABLE IF NOT EXISTS `products` (
   `status` varchar(50) DEFAULT NULL,
   `discount` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table julian_app.products: ~9 rows (approximately)
+-- Dumping data for table julian_app.products: ~10 rows (approximately)
 DELETE FROM `products`;
 INSERT INTO `products` (`id`, `productName`, `description`, `barCode`, `idCategoria`, `price`, `image`, `stock`, `createdAt`, `deletedAt`, `updatedAt`, `status`, `discount`) VALUES
 	(1, 'logitech g31', NULL, '12312345224', 1, 2000, NULL, 5, NULL, NULL, NULL, 'activo', NULL),
@@ -140,7 +140,8 @@ INSERT INTO `products` (`id`, `productName`, `description`, `barCode`, `idCatego
 	(10, 'prueba mouse', 'mouse asd ', '12312312', 3, 12000, '1695494608805--ofertas1.png', 5, '2023-09-23 18:43:28', NULL, '2023-09-23 18:43:28', NULL, NULL),
 	(11, 'prueba1', 'qwe', '1251654', 3, 2000, '1695752449031--prod2.png', 4, '2023-09-26 18:20:49', NULL, '2023-09-26 18:20:49', NULL, 15),
 	(12, 'asd1', 'qwe qwe ', '16564213', 5, 2000, '1695752670540--prod5.png', 30, '2023-09-26 18:24:30', NULL, '2023-09-26 18:24:30', NULL, NULL),
-	(13, 'algo', 'algo algo algo', '465146516', 4, 1000, '1695753883824--prod6.png', 300, '2023-09-26 18:44:43', NULL, '2023-09-26 18:44:43', NULL, NULL);
+	(13, 'algo', 'algo algo algo', '465146516', 4, 1000, '1695753883824--prod6.png', 300, '2023-09-26 18:44:43', NULL, '2023-09-26 18:44:43', NULL, NULL),
+	(14, 'mesa', 'mesa madera', '1233512316462', 3, 12000, '1698187513149__Proyecto nuevo (2).jpg', 5, '2023-10-24 22:45:13', NULL, '2023-10-24 22:45:13', NULL, NULL);
 
 -- Dumping structure for table julian_app.users
 DROP TABLE IF EXISTS `users`;
@@ -157,16 +158,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `image` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table julian_app.users: ~5 rows (approximately)
 DELETE FROM `users`;
 INSERT INTO `users` (`id`, `usuario`, `fullName`, `password`, `email`, `createdAt`, `deletedAt`, `updatedAt`, `rol`, `image`) VALUES
 	(1, 'julian', NULL, '123asd', 'julian@gmail.com', NULL, NULL, NULL, 'administrador', NULL),
-	(2, 'ema', NULL, '123asd', 'ema@gmail.com', '2023-09-18 17:15:47', NULL, NULL, 'cliente', NULL),
-	(5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(2, 'santi', NULL, '123asd', 'santi@gmail.com', '2023-09-18 17:15:47', NULL, NULL, 'cliente', NULL),
 	(11, 'prueba', 'prueba', '123asd', 'prueba@gmail.com', NULL, NULL, NULL, 'cliente', '1697734252880__default-image_450.png'),
-	(12, 'prueba2', 'prueba2', '123asd', 'prueba2@gmail.com', '2023-10-19 16:53:20', NULL, '2023-10-19 16:53:20', 'cliente', '1697734400008__prod3.png');
+	(12, 'prueba2', 'prueba2', '123asd', 'prueba2@gmail.com', '2023-10-19 16:53:20', NULL, '2023-10-19 16:53:20', 'cliente', '1697734400008__prod3.png'),
+	(13, 'prueba3', 'prueba3 algo3', '123asd', 'prueba3@gmail.com', '2023-10-24 22:43:03', NULL, '2023-10-24 22:43:03', 'cliente', '1698187383806__hexagono_4.png');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

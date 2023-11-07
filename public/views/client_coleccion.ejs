@@ -34,7 +34,7 @@
             <% } %>
             <% productos.forEach(prod => { %>
                 <div class="col-4 card-producto">
-                    <img style="width: 85%;" class="d-block mx-auto" src="/assets/imagen_productos/<%- prod.image %>" onerror="if (this.src != '/assets/img/default_product.png') this.src = '/assets/img/default_product.png';" alt="">
+                    <img style="width: 75%;object-fit:cover" class="d-block mx-auto" src="/assets/imagen_productos/<%- prod.image %>" onerror="if (this.src != '/assets/img/default_product.png') this.src = '/assets/img/default_product.png';" alt="">
                     <p>
                         <%- prod.productName %>
                     </p>
@@ -58,7 +58,7 @@
             <div class="row justify-content-around">
                 <% dia_oferta_lista.forEach(prod => { %>
                     <div class="col-2 card-producto">
-                        <img style="width: 85%;" class="d-block mx-auto" src="/assets/imagen_productos/<%- prod.image %>" onerror="if (this.src != '/assets/img/default_product.png') this.src = '/assets/img/default_product.png';" alt="">
+                        <img style="width: 75%;object-fit:cover" class="d-block mx-auto" src="/assets/imagen_productos/<%- prod.image %>" onerror="if (this.src != '/assets/img/default_product.png') this.src = '/assets/img/default_product.png';" alt="">
                         <p>
                             <%- prod.productName -%>
                         </p>
@@ -101,7 +101,7 @@
         <div class="row justify-content-around">
             <% productos_oferta_lista.forEach(prod => { %>
                 <div class="col-2 card-producto">
-                    <img style="width: 85%;" class="d-block mx-auto" src="/assets/imagen_productos/<%- prod.image %>" onerror="if (this.src != '/assets/img/default_product.png') this.src = '/assets/img/default_product.png';" alt="">
+                    <img style="width: 75%;object-fit:cover" class="d-block mx-auto" src="/assets/imagen_productos/<%- prod.image %>" onerror="if (this.src != '/assets/img/default_product.png') this.src = '/assets/img/default_product.png';" alt="">
                     <p>
                         <%- prod.productName -%>
                     </p>

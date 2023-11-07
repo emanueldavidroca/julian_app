@@ -102,7 +102,7 @@
                 <div class="row justify-content-around">
                     <% productos_lista.forEach(prod => { %>
                         <div class="col-3 card-producto">
-                            <img src="/assets/img/prod2.png" alt="">
+                            <img style="width: 85%;" class="d-block mx-auto" src="/assets/imagen_productos/<%- prod.image %>" onerror="if (this.src != '/assets/img/default_product.png') this.src = '/assets/img/default_product.png';" alt="">
                             <p>
                                 <%- prod.productName%>
                             </p>

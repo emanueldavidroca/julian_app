@@ -120,11 +120,14 @@ let usersController = {
     client_scan:async(req,res)=>{
         let sess = req.session;
         let {status} = req.query;
+        let categorias_lista = await categories.findAll();
+
         let contador_carrito = [];
         if(sess.idUser){
             contador_carrito = await orders.create({where:{id:sess.idUser}});
         }
-        res.redirect("/client/cart");
+        res.render("./client_scan",{status,cartCount:contador_carrito.length,categorias_lista});
+
     },
     client_scanning:async(req,res)=>{
         try {

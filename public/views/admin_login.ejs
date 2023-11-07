@@ -1,6 +1,15 @@
 <%- include("./partials/head_login.ejs") %> 
 <body>
-
+    <% if (status == "error") { %>
+        <script>
+            $(document).ready(function () {
+                bootbox.alert({
+                    title: '<b class="text-success">Error de login!</b>',
+                    message: 'Vuelva a ingresar los datos de login.',
+                });
+            });
+        </script>
+    <% } %>
     <% for( let index = 0; index < 10; index++ ) { %>
         <% index %>
     <% } %>

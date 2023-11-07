@@ -8,7 +8,8 @@ const {Op} = require("sequelize")
 
 let usersController = {
     client_login:(req,res)=>{
-        res.render("./client_login");
+        let {status} = req.query;
+        res.render("./client_login",{status});
     },
     cerrar_sesion:(req,res)=>{
         req.session.destroy((err)=>{
@@ -32,7 +33,7 @@ let usersController = {
                 res.redirect("/client/home");
             }
             else{
-                res.redirect("/client/login?error=true");
+                res.redirect("/client/login?status=error");
             }
         }
         catch(e){

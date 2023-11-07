@@ -4,7 +4,8 @@ const {users,products,categories} = require("../database/models");
 const { tryEach } = require("async");
 let adminController = {
     admin_login: (req, res) => {
-        res.render("./admin_login");
+        let {status} = req.query;
+        res.render("./admin_login",{status});
     },
     admin_logear: async(req, res) => {
         try {
@@ -23,8 +24,7 @@ let adminController = {
                 res.redirect("/admin/menu");
             }
             else{
-                res.redirect("/admin/login");
-
+                res.redirect("/admin/login?status=error");
             }
         } catch (error) {
             console.log(error)
